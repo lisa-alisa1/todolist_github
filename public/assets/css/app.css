@@ -1,0 +1,28 @@
+body {
+    background: -webkit-linear-gradient(left, rgb(160, 44, 255), #17ff4190);
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    color: #2c3e50;
+    margin-top: 60px;
+}
+.table {
+    color: rgba(54, 54, 54, 0.733) !important;
+    background: #fff9f9f5;
+    overflow:hidden;
+    border:5px solid #fff9f9f5;
+    width: 98% !important;
+    list-style-type: none;
+    margin: 5% auto 0;
+    -moz-border-radius:5px; /* FF1+ */
+    -webkit-border-radius:5px; /* Saf3-4 */
+    border-radius:10px;
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    border-collapse: collapse;
+    text-align: center;
+}
