@@ -1,40 +1,75 @@
-export default {
+import { createStore } from 'vuex'
+
+export default createStore({
     state: {
-      todos: [
-        {
-            id: Date.now(),
-            title: '1',
-            author: 'ffg',
-            content: 'hbjhb'
-        },
-        {
-            id: Date.now(),
-            title: '2',
-            author: 'ffg',
-            content: 'hbjhb'
-        },
-        {
-            id: Date.now(),
-            title: '3',
-            author: 'ffg',
-            content: 'hbjhb'
-        },
-        
-      ]
+        todos: [
+            {
+                id: 1,
+                title: 'allTodos',
+                author: 'ffg',
+                content: 'hbjhb'
+            },
+            {
+                id: 2,
+                title: 'allTodos',
+                author: 'ffg',
+                content: 'hbjhb'
+            },
+            {
+                id: 3,
+                title: 'allTodos',
+                author: 'ffg',
+                content: 'hbjhb'
+            },
+            {
+                id: 4,
+                title: 'allTodos',
+                author: 'ffg',
+                content: 'hbjhb'
+            },
+            
+        ]
     },
     getters: {
-        allTodos: (state) => state.todos
-       
+        allTodos: (state) => state.todos,
+
+        getTodoById: (state) => (id) => {
+            return state.todos.find(todo => todo.id === id)
+        },
+
     },
     mutations: {
-       add_todo(state,todo) {
-        state.todos.push(todo)
-       }
+        updateTodos(state, todos) {
+            state.todos = todos
+        }
     },
     actions: {
-        addTodo({commit}, todo) {
-            commit('add_todo', todo)
+
+        createTodo({state, commit}, newTodo) {
+        
+            if (state.todos && state.todos.length) {
+                var lastTodo = state.todos[state.todos.length - 1]
+                newTodo.id = lastTodo.id + 1
+            } else {
+                state.todos = []
+                newTodo.id = 1
+            }
+            
+            var todos = state.todos
+            todos.push(newTodo)
+
+            commit('updateTodos', todos)
+        },
+
+        deleteTodo({state, commit} , id) {
+            var todos = state.todos
+            var index = todos.findIndex(todo => todo.id === id)
+
+            if (todos && index || index === 0) {
+                todos.splice(index, 1)
+            }
+
+            commit('updateTodos', todos)
         }
     }
- 
-}
+})

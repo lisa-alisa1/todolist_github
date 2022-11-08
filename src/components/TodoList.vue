@@ -1,4 +1,5 @@
 <template>
+    
     <router-link to="/new-post">
         <button id="create">
             Создать пост
@@ -9,17 +10,27 @@
     <table id="table" class="table">
         <thead>
             <tr>
-            <td style="width: 2%;">ID</td>
-            <td style="width: 18%;">Заголовок</td>
-            <td style="width: 40%;">Содержание</td>
-            <td style="width: 20%;">Автор</td>
-            <td style="width: 18%;">Дата</td>
-            <td style="width: 2%;">Удалить</td>
+                <td style="width: 2%;">ID</td>
+                <td style="width: 18%;">Заголовок</td>
+                <td style="width: 40%;">Содержание</td>
+                <td style="width: 20%;">Автор</td>
+                <td style="width: 18%;">Дата</td>
+                <td style="width: 2%;">Удалить</td>
             </tr>
         </thead>
-        <tbody id="posts">
-            <tr v-for="todo in allTodos" :key="todo">
-                {{todo}}
+        <tbody v-for="(todo, i) in allTodos" :key="i">
+            <tr >
+                <td>{{todo.id}}</td>
+                <td>{{todo.title}}</td>
+                <td>{{todo.content}}</td>
+                <td>{{todo.author}}</td>
+                <td>{{ dateTime(Date.now()) }}</td>
+                <td>
+                    <button @click="deleteTodo(todo.id)">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+               
             </tr>
         </tbody>
     </table>
@@ -28,19 +39,31 @@
 
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-        }
-    },
 
+    
+
+<script>
+import {mapGetters, mapActions} from 'vuex'
+import moment from 'moment'
+
+export default {
+    computed: mapGetters(['allTodos']),
+    methods: {
+        dateTime(value) {
+            return moment(value).format("HH:mm YYYY-MM-DD");
+        },
+        ...mapActions(['deleteTodo'])
+        
+    }
 }
+
+
 </script>
 
 
 
 <style scoped>
+    
     button#create {
     margin: 15px;
     float: right;
@@ -75,4 +98,5 @@ button#create:active:after {
   bottom: -1.0em;
   transition: .2s;
 }
+
 </style>

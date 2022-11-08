@@ -1,4 +1,4 @@
-<template>
+  <template>
      <div id="showModal">
         <div class="showModal">
             <div class="modal-mask">
@@ -22,10 +22,14 @@
 
                         <div class="modal-footer">
                             <router-link to="/">
+                              <form @submit.prevent="submit" >
                                 <button 
                                     id="close" 
                                     class="btn btn-danger"> Назад </button >
-                                <button id="success" class="btn btn-success"> Опубликовать </button >
+                                <button type="submit"  @click="publushTodo()" id="success" class="btn btn-success">
+                                    Опубликовать
+                                </button >
+                              </form>
                             </router-link>
                         </div>
                     </div>
@@ -35,18 +39,34 @@
     </div>
 </template>
 
+
 <script>
 export default {
-    data() {
-        return {
-            title: '',
-            author: '',
-            content: ''
-        }
-    },
-    
-  
+  data() {
+    return {
+      todo: {
+        title: '',
+        author: '',
+        content: ''
+      }
+    }
+  },
+  methods: {
+    publushTodo() {
+      this.$store.dispatch('createTodo', {
+        id: 0,
+        title: this.title,
+        author: this.author,
+        content: this.content,
+       
+      })
+    }
+    }
+
+        
 }
+    
+
 </script>
 
 
