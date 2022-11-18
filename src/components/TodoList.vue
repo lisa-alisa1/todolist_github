@@ -1,66 +1,66 @@
 <template>
-    
-    <router-link to="/new-post">
-        <button id="create">
-            Создать пост
-        </button>
-    </router-link>
-    
+    <div>
+        <router-link to="/new-post">
+            <button id="create" color="success" type="border">
+                Создать пост
+            </button>
+        </router-link>
 
-    <table id="table" class="table">
-        <thead>
-            <tr>
-                <td style="width: 2%;">ID</td>
-                <td style="width: 18%;">Заголовок</td>
-                <td style="width: 40%;">Содержание</td>
-                <td style="width: 20%;">Автор</td>
-                <td style="width: 18%;">Дата</td>
-                <td style="width: 2%;">Удалить</td>
-            </tr>
-        </thead>
-        <tbody v-for="(todo, i) in allTodos" :key="i">
-            <tr >
-                <td>{{todo.id}}</td>
-                <td>{{todo.title}}</td>
-                <td>{{todo.content}}</td>
-                <td>{{todo.author}}</td>
-                <td>{{ dateTime(Date.now()) }}</td>
-                <td>
-                    <button @click="deleteTodo(todo.id)">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </td>
-               
-            </tr>
-        </tbody>
-    </table>
-
+        <table id="table" class="table">
+            <thead>
+                <tr>
+                    <td style="width: 2%;">ID</td>
+                    <td style="width: 18%;">Заголовок</td>
+                    <td style="width: 40%;">Содержание</td>
+                    <td style="width: 20%;">Автор</td>
+                    <td style="width: 18%;">Дата</td>
+                    <td style="width: 2%;">Удалить</td>
+                </tr>
+            </thead>
+            <tbody v-for="(todo, i) in allTodos" :key="i">
+                <tr >
+                    <td>{{todo.id}}</td>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.content}}</td>
+                    <td>{{todo.author}}</td>
+                    <td>{{ dateTime(todo.date) }}</td>
+                    <td>
+                        <button @click="deleteTodo(todo.id)">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     <router-view></router-view>
-
+    </div>
 </template>
 
 
-    
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import moment from 'moment'
 
 export default {
+    data() {
+        return {
+        }
+    },
+
     computed: mapGetters(['allTodos']),
+
     methods: {
+
         dateTime(value) {
-            return moment(value).format("HH:mm YYYY-MM-DD");
+            return moment(value).format('HH:mm  YYYY-MM-DD')
         },
-        ...mapActions(['deleteTodo'])
         
+        ...mapActions(['deleteTodo'])
     }
+    
 } 
-
-
 </script>
-
-
 
 <style scoped>
     

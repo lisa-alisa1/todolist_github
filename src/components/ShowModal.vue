@@ -42,15 +42,15 @@
 
 <script>
 export default {
+
   data() {
     return {
-      todo: {
         title: '',
         author: '',
         content: ''
       }
-    }
-  },
+    },
+
   methods: {
     publushTodo() {
       this.$store.dispatch('createTodo', {
@@ -58,17 +58,12 @@ export default {
         title: this.title,
         author: this.author,
         content: this.content,
-       
       })
     }
-    }
-
-        
+  }
 }
-    
 
 </script>
-
 
 
 
