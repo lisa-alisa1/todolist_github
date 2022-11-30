@@ -26,3 +26,29 @@ body {
     border-collapse: collapse;
     text-align: center;
 }
+
+
+.vs-con-table table {
+    font-size: 2rem !important;
+    
+}
+.vs-table-text {
+    font-size: 2rem;
+} 
+
+
+.vuesax-app-is-ltr .vs-table--search {
+    margin-left: 2px !important;
+}
+
+.vs-table--search-input  {
+    margin-top: 10px;
+    border-radius: 50px !important;
+    border: 1px solid rgba(0, 0, 0, 0.559) !important;
+    font-size: 1.7rem !important;
+}
+
+.vuesax-app-is-ltr .vs-table--search i {
+    font-size: 2rem !important;
+    top: 21px
+}

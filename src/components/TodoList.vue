@@ -1,39 +1,53 @@
 <template>
     <div>
         <router-link to="/new-post">
-            <button id="create" color="success" type="border">
-                Создать пост
-            </button>
+            <vs-button id="create" color="rgb(160, 44, 255)" type="filled">
+                 Создать пост
+            </vs-button>
         </router-link>
 
-        <table id="table" class="table">
-            <thead>
-                <tr>
-                    <td style="width: 2%;">ID</td>
-                    <td style="width: 18%;">Заголовок</td>
-                    <td style="width: 40%;">Содержание</td>
-                    <td style="width: 20%;">Автор</td>
-                    <td style="width: 18%;">Дата</td>
-                    <td style="width: 2%;">Удалить</td>
-                </tr>
-            </thead>
-            <tbody v-for="(todo, i) in allTodos" :key="i">
-                <tr >
-                    <td>{{todo.id}}</td>
-                    <td>{{todo.title}}</td>
-                    <td>{{todo.content}}</td>
-                    <td>{{todo.author}}</td>
-                    <td>{{ dateTime(todo.date) }}</td>
-                    <td>
+        <vs-table  
+            search 
+            :max-items="descriptionItems[0]"
+            pagination
+            :data="allTodos"
+            description
+            :description-items="descriptionItems"
+            description-title="Записей на странице"
+            description-connector="of"
+            description-body="Страницы"
+        >
+    
+            <template #thead>
+                <vs-th sort-key="id"> ID</vs-th>
+                <vs-th sort-key="title"> Заголовок</vs-th>
+                <vs-th sort-key="content">Содержание</vs-th>
+                <vs-th sort-key="author">Автор</vs-th>
+                <vs-th sort-key="date">Дата</vs-th>
+                <vs-th sort-key="delete">Удалить</vs-th>
+            </template>
+
+            <template  v-slot="{data}">
+
+                <vs-tr :key="index" v-for="(todo, index) in data">
+                    <vs-td >{{todo.id}}</vs-td>
+                    <vs-td >{{todo.title}}</vs-td>
+                    <vs-td >{{todo.content}}</vs-td>
+                    <vs-td >{{todo.author}}</vs-td>
+                    <vs-td >{{dateTime(todo.date)}}</vs-td>
+                    <vs-td >
                         <button @click="deleteTodo(todo.id)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    <router-view></router-view>
+                    </vs-td>
+                </vs-tr>    
+            </template>
+        </vs-table>
+        
+        <router-view></router-view>
     </div>
+        
+    
 </template>
 
 
@@ -45,6 +59,7 @@ import moment from 'moment'
 export default {
     data() {
         return {
+            descriptionItems: [3,5,15],
         }
     },
 
@@ -53,7 +68,7 @@ export default {
     methods: {
 
         dateTime(value) {
-            return moment(value).format('HH:mm  YYYY-MM-DD')
+            return moment(new Date(value)).format('YYYY-MM-DD HH:mm')
         },
         
         ...mapActions(['deleteTodo'])
@@ -63,7 +78,11 @@ export default {
 </script>
 
 <style scoped>
-    
+/* {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+} */
     button#create {
     margin: 15px;
     float: right;

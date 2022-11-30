@@ -11,28 +11,28 @@ export default new Vuex.Store({
                 title: 'allTodos',
                 author: 'ffg',
                 content: 'hbjhb',
-                date: ' 13:45 01.01.2022'
+                date: ' 2022-08-13 09:55'
             },
             {
                 id: 2,
                 title: 'allTodos',
                 author: 'ffg',
                 content: 'hbjhb',
-                date: '12:55 03.05.2022'
+                date: '2022-06-20 10:46'
             },
             {
                 id: 3,
                 title: 'allTodos',
                 author: 'ffg',
                 content: 'hbjhb',
-                date: '10:30 11.10.2022'
+                date: '2022-12-2 23:13'
             },
             {
                 id: 4,
                 title: 'allTodos',
                 author: 'ffg',
                 content: 'hbjhb',
-                date: '06:12 05.06.2022'
+                date: '2016-09-28 20:30'
             },
             
         ]
