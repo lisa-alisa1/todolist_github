@@ -32,23 +32,66 @@ body {
     font-size: 2rem !important;
     
 }
-.vs-table-text {
+th .vs-table-text {
     font-size: 2rem;
+    justify-content: center !important;
 } 
-
 
 .vuesax-app-is-ltr .vs-table--search {
     margin-left: 2px !important;
+    position: absolute;
+    top: 60px;
 }
 
 .vs-table--search-input  {
     margin-top: 10px;
     border-radius: 50px !important;
-    border: 1px solid rgba(0, 0, 0, 0.559) !important;
+    border: 1px solid rgba(0, 0, 0, 0.289) !important;
     font-size: 1.7rem !important;
 }
 
 .vuesax-app-is-ltr .vs-table--search i {
     font-size: 2rem !important;
-    top: 21px
+    top:19px;
+}
+
+.vs-con-table {
+    margin: 20px;
+    padding-inline: 20px;
+    background: #fbfbfb7e !important;
+} 
+
+.vs-table--tbody-table tr {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
+    background: none !important;
+}
+
+button#create {
+    margin-right: 30px !important;
+}
+
+.vs-table--tbody-table tr {
+    background-color: none !important;
+}
+
+.modal-container[data-v-2f5625b0] {
+    border-radius: 54px !important;
+    ;
+}
+
+.modal-body[data-v-2f5625b0] {
+    margin: 0 !important;
+}
+
+#author, #title {
+    width: 33%;
+    border: 1px #b4b5b6 solid;
+    height: 25px;
+}
+
+#trash {
+    background: none;
+    border: none;
 }

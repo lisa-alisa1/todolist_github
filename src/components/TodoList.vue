@@ -14,7 +14,7 @@
             description
             :description-items="descriptionItems"
             description-title="Записей на странице"
-            description-connector="of"
+            description-connector="из"
             description-body="Страницы"
         >
     
@@ -27,16 +27,15 @@
                 <vs-th sort-key="delete">Удалить</vs-th>
             </template>
 
-            <template  v-slot="{data}">
-
+            <template v-slot="{data}">
                 <vs-tr :key="index" v-for="(todo, index) in data">
-                    <vs-td >{{todo.id}}</vs-td>
-                    <vs-td >{{todo.title}}</vs-td>
-                    <vs-td >{{todo.content}}</vs-td>
-                    <vs-td >{{todo.author}}</vs-td>
-                    <vs-td >{{dateTime(todo.date)}}</vs-td>
+                    <vs-td>{{todo.id}}</vs-td>
+                    <vs-td>{{todo.title}}</vs-td>
+                    <vs-td>{{todo.content}}</vs-td>
+                    <vs-td>{{todo.author}}</vs-td>
+                    <vs-td>{{dateTime(todo.date)}}</vs-td>
                     <vs-td >
-                        <button @click="deleteTodo(todo.id)">
+                        <button id="trash" @click="deleteTodo(todo.id)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </vs-td>
@@ -78,11 +77,7 @@ export default {
 </script>
 
 <style scoped>
-/* {
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
-} */
+
     button#create {
     margin: 15px;
     float: right;

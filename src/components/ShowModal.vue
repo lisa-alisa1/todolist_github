@@ -5,33 +5,35 @@
                 <div class="modal-wrapper">
                     <div class="modal-container">
                         <div id="result"></div>
+
                         <div class="modal-header">
-                          <h2>Новый пост</h2>
+                          <h2> Новый пост </h2>
                         </div>
 
-                        <div class="modal-body">
-                            <h3>Заголовок: 
-                                <input v-model="title"  type="text" id="title"> 
-                            </h3>
-                            <br>
-                            Автор статьи:  
-                                <input v-model='author' type="text" id="author">
-                            <h2>Контент:</h2>
-                            <textarea v-model='content' class="modal-textarea" id="content"></textarea>
-                        </div>
+                        <form @submit="publushTodo">
+                          <div class="modal-body">
+                              <h3> Заголовок: </h3>
+                              <input v-model="title"  type="text" id="title" required> 
+                              <br>
+                              <h3> Автор:</h3>
+                              <input v-model='author' type="text" id="author" required>
+                              
+                              <h3> Контент:</h3>
+                              <textarea v-model='content' class="modal-textarea" id="content" required></textarea>
+                          </div>
 
-                        <div class="modal-footer">
+                          <div class="modal-footer">
                             <router-link to="/">
-                              <form @submit.prevent="submit" >
-                                <button 
-                                    id="close" 
-                                    class="btn btn-danger"> Назад </button >
-                                <button type="submit"  @click="publushTodo()" id="success" class="btn btn-success">
-                                    Опубликовать
-                                </button >
-                              </form>
+                              <vs-button id="close" color="danger" type="gradient">
+                                Назад
+                              </vs-button>
                             </router-link>
-                        </div>
+
+                            <vs-button id="success" color="success" type="gradient" button="submit">
+                                Опубликовать
+                            </vs-button>
+                          </div>
+                      </form>
                     </div>
                 </div>
             </div>
@@ -41,33 +43,35 @@
 
 
 <script>
+
 export default {
 
   data() {
     return {
         title: '',
         author: '',
-        content: ''
+        content: '',
+        result: '',
       }
     },
 
   methods: {
-    publushTodo() {
-      this.$store.dispatch('createTodo', {
-        id: 0,
-        title: this.title,
-        author: this.author,
-        content: this.content,
-      })
+    publushTodo(e) {
+      e.preventDefault();
+      if(this.title !== '' && this.content !== '' && this.author !== '') {
+        this.$store.dispatch('createTodo', {
+          id: 0,
+          title: this.title,
+          author: this.author,
+          content: this.content,
+        })
+        this.$router.push('/')
+      }
     }
   }
 }
 
 </script>
-
-
-
-
 
 
 <style scoped>
@@ -176,6 +180,11 @@ a#show-modal:active:after {
 .modal-textarea {
   width: 80%;
   height: 150px;
+  border: 1px #b4b5b6 solid;
+}
+h3 {
+  font-size: 24px;
+  font-weight: 100;
 }
 
 </style>
