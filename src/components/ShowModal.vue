@@ -19,7 +19,7 @@
                               <input v-model='author' type="text" id="author" required>
                               
                               <h3> Контент:</h3>
-                              <textarea v-model='content' class="modal-textarea" id="content" required></textarea>
+                              <textarea v-model='body' class="modal-textarea" id="content" required></textarea>
                           </div>
 
                           <div class="modal-footer">
@@ -43,14 +43,13 @@
 
 
 <script>
-
 export default {
 
   data() {
     return {
         title: '',
         author: '',
-        content: '',
+        body: '',
         result: '',
       }
     },
@@ -58,19 +57,19 @@ export default {
   methods: {
     publushTodo(e) {
       e.preventDefault();
+
       if(this.title !== '' && this.content !== '' && this.author !== '') {
         this.$store.dispatch('createTodo', {
           id: 0,
           title: this.title,
-          author: this.author,
-          content: this.content,
+          body: this.body,
         })
+
         this.$router.push('/')
       }
     }
   }
 }
-
 </script>
 
 

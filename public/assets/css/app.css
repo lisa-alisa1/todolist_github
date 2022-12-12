@@ -29,12 +29,13 @@ body {
 
 
 .vs-con-table table {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
+
     
 }
 th .vs-table-text {
     font-size: 2rem;
-    justify-content: center !important;
+     /* justify-content: center !important; */
 } 
 
 .vuesax-app-is-ltr .vs-table--search {
@@ -59,12 +60,11 @@ th .vs-table-text {
     margin: 20px;
     padding-inline: 20px;
     background: #fbfbfb7e !important;
+    padding-top: 3%;
 } 
 
 .vs-table--tbody-table tr {
-    display: flex;
-    justify-content: space-between;
-    margin: 2px;
+   
     background: none !important;
 }
 
@@ -83,7 +83,7 @@ button#create {
 
 .modal-body[data-v-2f5625b0] {
     margin: 0 !important;
-}
+} 
 
 #author, #title {
     width: 33%;
@@ -94,4 +94,9 @@ button#create {
 #trash {
     background: none;
     border: none;
+    padding-left: 3rem;
 }
+/* 
+.vs-con-table td {
+    width: 31%;
+} */

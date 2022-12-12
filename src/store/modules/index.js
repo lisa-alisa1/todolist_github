@@ -5,55 +5,28 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        todos: [
-            {
-                id: 1,
-                title: 'allTodos',
-                author: 'ffg',
-                content: 'hbjhb',
-                date: ' 2022-08-13 09:55'
-            },
-            {
-                id: 2,
-                title: 'allTodos',
-                author: 'ffg',
-                content: 'hbjhb',
-                date: '2022-06-20 10:46'
-            },
-            {
-                id: 3,
-                title: 'allTodos',
-                author: 'ffg',
-                content: 'hbjhb',
-                date: '2022-12-2 23:13'
-            },
-            {
-                id: 4,
-                title: 'allTodos',
-                author: 'ffg',
-                content: 'hbjhb',
-                date: '2016-09-28 20:30'
-            },
-            
-        ]
+        todos: []
     },
+
     getters: {
         allTodos: (state) => state.todos,
-
-        getTodoById: (state) => (id) => {
-            return state.todos.find(todo => todo.id === id)
-        },
-
     },
+
     mutations: {
         updateTodos(state, todos) {
             state.todos = todos
         }
     },
+
     actions: {
+        async fetchTodos({commit}) {
+            const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=7')
+            const todos = await res.json()
+
+            commit('updateTodos', todos)
+        },
 
         createTodo({state, commit}, newTodo) {
-        
             if (state.todos && state.todos.length) {
                 var lastTodo = state.todos[state.todos.length - 1]
                 newTodo.id = lastTodo.id + 1

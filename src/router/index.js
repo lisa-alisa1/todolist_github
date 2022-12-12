@@ -4,7 +4,6 @@ import TodoList from '@/components/TodoList.vue'
 import ShowModal from '@/components/ShowModal.vue'
 
 
-
 export default new VueRouter({
     mode: 'history',
     routes:  [

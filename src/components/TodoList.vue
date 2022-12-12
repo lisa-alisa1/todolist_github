@@ -17,38 +17,31 @@
             description-connector="из"
             description-body="Страницы"
         >
-    
             <template #thead>
-                <vs-th sort-key="id"> ID</vs-th>
-                <vs-th sort-key="title"> Заголовок</vs-th>
-                <vs-th sort-key="content">Содержание</vs-th>
-                <vs-th sort-key="author">Автор</vs-th>
-                <vs-th sort-key="date">Дата</vs-th>
-                <vs-th sort-key="delete">Удалить</vs-th>
+                <vs-th sort-key="id" style="width: 10%"> ID</vs-th>
+                <vs-th sort-key="title" style="width: 30%"> Заголовок</vs-th>
+                <vs-th sort-key="content" style="width: 50%">Содержание</vs-th>
+                <vs-th sort-key="delete" style="width: 10%">Удалить</vs-th>
             </template>
 
             <template v-slot="{data}">
                 <vs-tr :key="index" v-for="(todo, index) in data">
-                    <vs-td>{{todo.id}}</vs-td>
-                    <vs-td>{{todo.title}}</vs-td>
-                    <vs-td>{{todo.content}}</vs-td>
-                    <vs-td>{{todo.author}}</vs-td>
-                    <vs-td>{{dateTime(todo.date)}}</vs-td>
+                    <vs-td >{{todo.id}}</vs-td>
+                    <vs-td >{{todo.title}}</vs-td>
+                    <vs-td >{{todo.body}}</vs-td>
                     <vs-td >
                         <button id="trash" @click="deleteTodo(todo.id)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </vs-td>
-                </vs-tr>    
+                </vs-tr> 
             </template>
+
         </vs-table>
-        
+      
         <router-view></router-view>
     </div>
-        
-    
 </template>
-
 
 
 <script>
@@ -56,6 +49,11 @@ import {mapGetters, mapActions} from 'vuex'
 import moment from 'moment'
 
 export default {
+
+    async mounted() {
+        this.$store.dispatch('fetchTodos')
+    },
+
     data() {
         return {
             descriptionItems: [3,5,15],
@@ -65,16 +63,15 @@ export default {
     computed: mapGetters(['allTodos']),
 
     methods: {
-
         dateTime(value) {
             return moment(new Date(value)).format('YYYY-MM-DD HH:mm')
         },
         
         ...mapActions(['deleteTodo'])
     }
-    
 } 
 </script>
+
 
 <style scoped>
 
@@ -112,5 +109,4 @@ button#create:active:after {
   bottom: -1.0em;
   transition: .2s;
 }
-
 </style>
